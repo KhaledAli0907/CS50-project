@@ -169,8 +169,6 @@ def quote():
 
 
 
-
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -242,6 +240,7 @@ def sell():
         flash("Sold")
         return redirect("/")
 
+
 @app.route("/recharge", methods=["GET", "POST"])
 @login_required
 def recharge():
@@ -262,6 +261,7 @@ def recharge():
         y = len(CreditCard)
         # Copy the Card into list to modify
         copycard = CreditCard[::-1]
+        # put try to handle value errors
         try:
             # apply the algorithm with list comprehension
             firstnumbers = [int(i) for i in copycard[0::2]]
@@ -287,3 +287,43 @@ def recharge():
         except ValueError:
             flash("Invalid CardNumber")
             return render_template("recharge.html", invalid=True)
+
+@app.route("/changepass", methods=["GET", "POST"])
+@login_required
+def changepass():
+    """ Change user's Password """
+    # get user's id
+    user_id = session["user_id"]
+    # when user click the template
+    if request.method == "GET":
+        return render_template("changepass.html")
+
+    # when user post
+    else:
+        # quary database by user id
+        rows = db.execute("SELECT * FROM users WHERE id = ?", user_id)
+        # get old password from user
+        oldPassword = request.form.get("oldpassword")
+
+        # validate it's correct
+        if not check_password_hash(rows[0]["hash"], oldPassword):
+            flash("Old password incorrect")
+            return render_template("changepass.html", invalid=True)
+
+        # get input from user
+        newPassword = request.form.get("newpassword")
+        confirmation = request.form.get("confirmation")
+
+        # validate passwords match
+        if newPassword != confirmation:
+            flash("Passwords Doesn't Match!")
+            return render_template("changepass.html", invalid=True)
+
+        # Change the database with the new password
+        db.execute("UPDATE users SET hash = ? WHERE id = ?",generate_password_hash(newPassword) ,user_id)
+
+        # return the user to homepage
+        flash("Password Changed")
+        return redirect("/")
+
+
