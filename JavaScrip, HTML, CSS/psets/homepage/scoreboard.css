@@ -1,0 +1,57 @@
+.header {
+    background-color: #151B25;
+    color: #2255DC;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80px;
+    font-style: italic;
+    color: #151B25;
+    text-align: center;
+}
+
+body {
+    background: #ADD8E6;
+    background: -webkit-linear-gradient(to right, #82A4E3, #2255DC);
+    background: linear-gradient(to right, #82A4E3, #2255DC);
+    min-height: 100vh;
+}
+
+
+form {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #151B25;
+    text-align: center;
+    margin-left = auto;
+    margin-right = auto;
+}
+
+table {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    margin-left = auto;
+    margin-right = auto;
+    color: #151B25;
+}
+
+.add {
+    background-color: #9CA6B8;
+}
+
+.link {
+    background-color: #151B25;
+}
+
+.input-row {
+    text-align: center;
+    margin-left = auto;
+    margin-right = auto;
+}

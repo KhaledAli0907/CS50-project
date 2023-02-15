@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["totalshares"] }}</td>
+                <td>{{ usd(row["price"]) }}</td>
+                <td>{{ usd(row["totalshares"] * row["price"]) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <th><scope> Cash: </scope></th>
+                <td><scope> {{ cash }} </scope></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <th><scope> TOTAL: </scope></th>
+                <td><scope> {{ total }} </scope></td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

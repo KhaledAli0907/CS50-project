@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recharge
+{% endblock %}
+
+{% block main %}
+    <form action="/recharge" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto"  name="CardName" placeholder="Name on card" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto"  name="cridetcard" placeholder="CridetCard Number" type="numeric">
+            <p>{{ cardtype }}</p>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="amount" placeholder="Recharge Amount" type="number" min="0">
+        </div>
+        <button class="btn btn-primary" type="submit">Recharge</button>
+    </form>
+{% endblock %}

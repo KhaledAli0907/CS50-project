@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            // load the script when the page load
+            document.addEventListener('DOMContentLoaded', function() {
+                // turn the incorrect answers to red when clicked
+                let incorrects = document.querySelectorAll('.incorrect');
+                for (let i = 0; i < incorrects.length; i++)
+                {
+                    incorrects[i].addEventListener('click', function() {
+                        incorrects[i].style.backgroundColor = 'red';
+                        document.querySelector('#feedback1').innerHTML = 'Incorrect';
+                    });
+                }
+                // turn the correct answers to green
+                let correct = document.querySelector('.correct');
+                correct.addEventListener('click', function() {
+                    correct.style.backgroundColor = 'green';
+                    document.querySelector('#feedback1').innerHTML = 'Correct';
+                });
+                document.querySelector('#check').addEventListener('click', function() {
+                    let inputraw = document.querySelector('input');
+                    let input = inputraw.value.toLowerCase();
+                    // see if the value is correct 
+                    if (input == 'russia')
+                    {
+                        inputraw.style.backgroundColor = 'green';
+                        document.querySelector('#feedback2').innerHTML = 'Correct';
+                    }
+                    else
+                    {
+                        inputraw.style.backgroundColor = 'red';
+                        document.querySelector('#feedback2').innerHTML = 'Incorrect';
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What's Egypt's capital name? </h3>
+
+                <button class="incorrect">Dubai</button>
+                <button class="incorrect">Ryad</button>
+                <button class="correct">Cairo</button>
+                <button class="incorrect">NewYork</button>
+
+                <p id="feedback1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>What is the biggest country on earth?</h3>
+                <input type="text">
+                <button id="check">Check answer</button>
+
+                <p id="feedback2"></p>
+
+            </div>
+        </div>
+    </body>
+</html>
